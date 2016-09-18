@@ -1,13 +1,12 @@
 ;; module.el
 
+;; loading module-log.el file.
+(load-file (concat root-dir "module-log.el"))
+
 (defconst *module-info-file* "info.el")
 (defconst *module-init-file* "init.el")
 (defconst *module-cfg-dir* "config")
 (defconst *module-lib-dir* "lib")
-
-(defconst *msg-module-loading* "\n\n==> Loading Module: ")
-(defconst *msg-module-info-not-exists* "#ERR: Could not found info.el file for module with location: ")
-(defconst *msg-module-name-not-exists* "#ERR: No module name found. Add module name to module's info.el file")
 
 (defvar current-module-dir  nil "Current module directory")
 (defvar current-module-vsn  nil "Current module version")
@@ -38,27 +37,26 @@
   (load-file (concat (module-cfg-dir) config-file)))
 
 (defun load-module (module-dir)
-  (message (concat *msg-module-loading* module-dir))
+  (info-module-loading module-dir)
   (let* ((module-dir (file-name-as-directory module-dir))
 	 (module-inf (concat module-dir *module-info-file*))
 	 (module-int (concat module-dir *module-init-file*)))
     (setq current-module-dir module-dir)
     (clear-module-info)
+
     (if (file-exists-p module-inf)
 	(load-file module-inf)
-      (message (concat *msg-module-info-not-exists* module-dir)))
+      (err-module-info module-dir))
 
-    (add-to-list 'load-path (module-lib-dir))
+    ;; add lib dir of module when it exists.
+    (when (file-exists-p (module-lib-dir))
+      (add-to-list 'load-path (module-lib-dir)))
 
+    ;; load init.el file of module when it exists.
     (when (file-exists-p module-int)
       (load-file module-int))
 
     (setq current-module-dir nil)))
-
-;;(defconst *module-info-file* "info.el")
-;;(defconst *module-init-file* "init.el")
-;;(defconst *module-cfg-dir* "config")
-;;(defconst *module-lib-dir* "lib")
 
 (defun module-create-files-fn (module-name module-dir)
   (let ((files (mapcar (lambda (file) (concat module-dir file)) (list *module-info-file* *module-init-file*))))
@@ -87,5 +85,5 @@
     (make-directory cdir t)
     (make-directory ldir t)
     (module-create-files-fn mname mdir)
-    (message (concat mname " module created under " modules-dir))))
+    (info-module (concat mname " module created under " modules-dir))))
 	
