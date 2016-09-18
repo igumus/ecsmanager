@@ -1,15 +1,5 @@
 ;; init file.
 
-;; package operations
-(require 'package)
-;; activate all the packages (in particular autoloads)
-(package-initialize)
-;; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-;; end of package operations
-
-
 (setq root-dir user-emacs-directory)
 
 (setq history-dir (file-name-as-directory (concat root-dir "history")))
@@ -25,6 +15,23 @@
 (make-directory autosaves-dir t)
 (make-directory modules-dir t)
 
+;; package operations
+(require 'package)
+
+;; add default melpa packages
+(add-to-list 'package-archives '("melpa"."https://melpa.org/packages/") t)
+
+;; activate all the packages (in particular autoloads)
+(package-initialize)
+;; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+;; end of package operations
+
+;; Changing yes-no to y-n
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Loading module.el file.
 (load-file (concat root-dir "module.el"))
 
 ;; helper functions.
