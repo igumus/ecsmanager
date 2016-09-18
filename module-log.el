@@ -1,10 +1,12 @@
 ;; module-msg.el
 
+
 (defun warn-module (message)
-  (message (concat "### WARN: " message)))
+  (message (format "### WARN: %s" message)))
+
 
 (defun err-module (message)
-  (message (concat "### ERR: " message)))
+  (message (format "### ERR: %s" message)))
 
 (defun info-module (mname)
   (message (format "\n\n### INFO: %s" mname)))
