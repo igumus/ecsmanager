@@ -32,9 +32,6 @@
   (when (and (file-directory-p dir) (file-exists-p dir)) 
     (directory-files dir t "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)")))
 
-;;(find-modules "~/.emacs.d/modules/")
-
-
 ;; Load all modules.
 (let* ((modules (find-modules modules-dir)))
   (if modules
