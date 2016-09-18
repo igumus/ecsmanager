@@ -9,5 +9,6 @@ Themes Module directory structure;
 * info.el: Contains module informations. Module informations are; name, version, description, auto package installation, auto load.
 * init.el: Contains control mechanisms for module. Checks color-theme package, if installed loads the configuration, otherwise installs color-theme package (if specified in info.el file) then loads the configuration.
 * lib: Contains extra package files.
-* lib/cyberpunk.el: [[cyberpunk theme][https://github.com/overtone/emacs-live/]]
-* lib/gandalf.el: [[gandalf theme][https://github.com/overtone/emacs-live/]]
+* lib/cyberpunk.el: [cyberpunk theme](https://github.com/overtone/emacs-live/)
+* lib/gandalf.el: [gandalf theme](https://github.com/overtone/emacs-live/)
+
