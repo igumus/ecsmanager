@@ -1,0 +1,1 @@
+* bulundugun klasor nasil bakiliyor (elisp) uzerinde onu ogrenmek lazim.

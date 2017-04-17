@@ -1,0 +1,49 @@
+# -*- mode: snippet -*-
+# name: genserver
+# key: genserver
+# --
+defmodule $1 do
+  use GenServer
+
+  @name __MODULE__
+
+  #######
+  # API #
+  #######
+  
+  def start_link(state \\\\ %{}) do
+      GenServer.start_link(@name, state, name: @name)
+  end
+
+  def stop do
+      GenServer.stop(@name)
+  end
+
+  ######################
+  # Callback Functions #
+  ######################
+  def init(state) do
+      {:ok, state}
+  end
+
+  def handle_call(_msg, _from, state) do
+      {:reply, :call, state}
+  end
+
+  def handle_cast(_msg, state) do
+      {:noreply, state}
+  end
+
+  def handle_info(_msg, state) do
+      {:noreply, state}
+  end
+
+  def code_change(_old_vsn, state, _extra) do
+      {:ok, state}
+  end
+
+  def terminate(_reason, _state) do
+      :normal
+  end
+
+end

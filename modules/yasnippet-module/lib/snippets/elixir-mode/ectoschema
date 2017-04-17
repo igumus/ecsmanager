@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: ectomodel
+# key: ectomodel
+# --
+defmodule $1 do
+  use Ecto.Schema
+
+  schema "$0" do
+  end
+
+end

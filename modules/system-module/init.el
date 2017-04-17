@@ -9,8 +9,9 @@
 (load-module-config "cfg-shell.el")
 (load-module-config "cfg-personal.el")
 
-(let ((pname 'smex)
-      (cname "cfg-smex.el"))
-  (if (package-installed-p pname)
-      (load-module-config cname)
-    (load-module-config-with-package pname cname)))
+
+;(let ((pname 'smex)
+;(cname "cfg-smex.el"))
+;(if (package-installed-p pname)
+;(load-module-config cname)
+;(load-module-config-with-package pname cname)))
